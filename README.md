@@ -49,4 +49,22 @@ This README lists the main components and features used in the `index.js` file f
 
 Each model helps organize and connect data for the job portal, making it easy to manage users, companies, jobs, and applications.
 
+---
+
+# Controllers Documentation
+
+## User Controller
+Handles user-related operations:
+
+- **register**: Registers a new user. Checks for required fields, ensures email is unique, hashes the password, and saves the user.
+- **login**: Authenticates a user. Checks credentials, verifies password and role, creates a JWT token, and sets it in a cookie.
+- **logout**: Logs out the user by clearing the authentication cookie.
+- **updateProfile**: Updates user profile information (name, email, phone, bio, skills). Validates input and saves changes.
+
+Each function helps manage user accounts, authentication, and profile updates in the job portal.
+
+---
+
+You can add similar documentation for other controllers as needed.
+
 
