@@ -4,6 +4,10 @@ import express from 'express'; // new way using ES6 modules
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './utils/db.js';
+
+dotenv.config({});
 
 const app = express();
 
@@ -24,8 +28,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{
+    connectDB();
     console.log(`Server is running at ${PORT}`);
 })

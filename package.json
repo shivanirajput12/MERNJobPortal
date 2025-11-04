@@ -5,8 +5,8 @@
   "type":"module",
   
   "scripts": {
-    "start": "nodemon index.js"     
-  
+    "start": "nodemon index.js"  ,   
+   "dev": "nodemon index.js"
   },
   "author": "shivani",
   "license": "ISC",

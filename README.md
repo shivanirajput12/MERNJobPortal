@@ -18,4 +18,35 @@ This README lists the main components and features used in the `index.js` file f
 - **Port Definition**: Sets the port for the server.
 - **Server Listening and Logging**: Starts the server and shows a message.
 
+---
+
+# Models Documentation
+
+## User Model
+- Stores user information (name, email, phone, password, role).
+- Role can be "recruiter" or "student".
+- Profile includes bio, skills, resume, company (for recruiters), and profile photo.
+- Used to manage authentication and user details.
+
+## Company Model
+- Stores company details (name, description, website, location, logo).
+- Linked to a user (owner/recruiter) via `userId`.
+- Used to represent companies posting jobs.
+
+## Job Model
+- Stores job details (title, description, requirements, salary, location, job type, position).
+- Linked to a company and the user who created the job.
+- Keeps track of applications for the job.
+- Used to list and manage job postings.
+
+## Application Model
+- Stores job applications made by users.
+- Linked to a job and an applicant (user).
+- Tracks application status: "pending", "rejected", or "accepted".
+- Used to manage and review job applications.
+
+---
+
+Each model helps organize and connect data for the job portal, making it easy to manage users, companies, jobs, and applications.
+
 
