@@ -65,6 +65,25 @@ Each function helps manage user accounts, authentication, and profile updates in
 
 ---
 
-You can add similar documentation for other controllers as needed.
+# Middleware Documentation
+
+## isAuthenticated Middleware
+- Checks if the user is logged in by verifying the JWT token in cookies.
+- If the token is missing or invalid, responds with an unauthorized error.
+- If valid, attaches the user ID to the request for use in other routes.
+- Used to protect routes that require authentication (like updating profile).
+
+---
+
+# Routes Documentation
+
+## User Routes
+- **/register**: Registers a new user (POST).
+- **/login**: Logs in a user (POST).
+- **/logout**: Logs out the user (GET).
+- **/profile/update**: Updates user profile (POST, protected by isAuthenticated middleware).
+- Uses the user controller for handling logic and isAuthenticated middleware for security.
+
+These files help secure your backend and organize user-related API endpoints.
 
 

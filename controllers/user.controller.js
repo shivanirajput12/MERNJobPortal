@@ -1,4 +1,4 @@
-import { User } from "../models/user.model.js";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -122,15 +122,12 @@ export const updateProfile = async (req, res) => {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
     const file = req.file;
 
-    // Basic validation
-    if (!fullname || !email || !phoneNumber || !bio || !skills) {
-      return res
-        .status(400)
-        .json({ message: "Something is missing", success: false });
-    }
     //cloudinary ayega yahan
+    let skillsArray = [];
+    if (skills) {
+      skillsArray = skills.split(",").map((skill) => skill.trim());
+    }
 
-    const skillsArray = skills.split(",").map((skill) => skill.trim());
     const userId = req.id; //middleware authentication se id le rahe hai
 
     let user = await User.findById(userId);
@@ -141,13 +138,17 @@ export const updateProfile = async (req, res) => {
     }
 
     //updating user profile
-    user.fullname = fullname;
-    user.email = email;
-    user.phoneNumber = phoneNumber;
-    user.profile = {
-      bio,
-      skills: skillsArray,
-    };
+    if (fullname) user.fullname = fullname;
+    if (email) user.email = email;
+    if (phoneNumber) user.phoneNumber = phoneNumber;
+    if (bio) user.profile.bio = bio;
+    if (skills) user.profile.skills = skillsArray;
+    if (file) {
+      user.profile.avatar = {
+        public_id: "sample_id", //cloudinary se aayega
+        url: "sample_url", //cloudinary se aayega
+      };
+    }
 
     //resume comes later here
 
