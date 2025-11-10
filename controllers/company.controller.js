@@ -18,7 +18,7 @@ export const registerCompany = async (req, res) => {
     }
 }
 
-export const getComany = async(req, res) => {
+export const getCompany = async(req, res) => {
     try{
        const userId = req.id;  //logged in user id
        const companies = await Company.find({userId});
@@ -26,7 +26,7 @@ export const getComany = async(req, res) => {
         return res.status(404).json({message: "No company found for this user", success: false});
        }
        const company = companies[0]; // Assuming one company per user
-        return res.status(200).json({message: "Company fetched successfully", company, success: true});
+        return res.status(200).json({message: "Company fetched successfully", companies, success: true});
     }catch(err){
         return res.status(500).json({message: "Server Error", success: false});
     }

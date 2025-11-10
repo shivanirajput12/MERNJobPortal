@@ -14,7 +14,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
   }],
   salary:{
-    type: Number,
+    type: String,
     required: true,
   },
   location: {
@@ -23,6 +23,10 @@ const jobSchema = new mongoose.Schema({
   },
   jobType: {
     type: String,
+    required: true,
+  },
+  experience:{
+    type: Number,
     required: true,
   },
   position:{
@@ -51,4 +55,6 @@ const jobSchema = new mongoose.Schema({
   ]
 },{timestamps: true});
 
-export const Job = mongoose.model("Job", jobSchema);    
+const Job = mongoose.model("Job", jobSchema);
+
+export default Job;

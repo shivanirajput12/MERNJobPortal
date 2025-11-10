@@ -55,13 +55,61 @@ Each model helps organize and connect data for the job portal, making it easy to
 
 ## User Controller
 Handles user-related operations:
-
-- **register**: Registers a new user. Checks for required fields, ensures email is unique, hashes the password, and saves the user.
+- **register**: Registers a new user. Validates input, ensures email is unique, hashes the password, and saves the user.
 - **login**: Authenticates a user. Checks credentials, verifies password and role, creates a JWT token, and sets it in a cookie.
 - **logout**: Logs out the user by clearing the authentication cookie.
 - **updateProfile**: Updates user profile information (name, email, phone, bio, skills). Validates input and saves changes.
 
-Each function helps manage user accounts, authentication, and profile updates in the job portal.
+## Company Controller
+Handles company-related operations:
+- **createCompany**: Creates a new company profile. Only accessible to recruiters.
+- **getCompanyById**: Fetches details of a specific company.
+- **updateCompany**: Updates company information. Only the owner can update.
+- **listCompanies**: Lists all companies.
+
+## Job Controller
+Handles job-related operations:
+- **createJob**: Creates a new job posting. Only recruiters can post jobs.
+- **getJobById**: Fetches details of a specific job.
+- **updateJob**: Updates a job posting. Only the creator can update.
+- **deleteJob**: Deletes a job posting. Only the creator can delete.
+- **listJobs**: Lists all job postings.
+
+## Application Controller
+Handles job application operations:
+- **applyForJob**: Submits a new application for a job.
+- **getApplicationById**: Fetches details of a specific application.
+- **updateApplicationStatus**: Updates the status of an application ("pending", "accepted", "rejected").
+- **listApplications**: Lists all applications for the logged-in user.
+
+---
+
+# Routes Documentation
+
+## User Routes
+- **POST /register**: Registers a new user.
+- **POST /login**: Logs in a user.
+- **GET /logout**: Logs out the user.
+- **POST /profile/update**: Updates user profile (protected by authentication).
+
+## Company Routes
+- **POST /company/create**: Creates a new company (recruiter only).
+- **GET /company/:id**: Gets details of a company.
+- **PUT /company/:id/update**: Updates company info (owner only).
+- **GET /companies**: Lists all companies.
+
+## Job Routes
+- **POST /job/create**: Creates a new job (recruiter only).
+- **GET /job/:id**: Gets details of a job.
+- **PUT /job/:id/update**: Updates a job (creator only).
+- **DELETE /job/:id/delete**: Deletes a job (creator only).
+- **GET /jobs**: Lists all jobs.
+
+## Application Routes
+- **POST /application/apply**: Applies for a job (authenticated user).
+- **GET /application/:id**: Gets details of an application.
+- **PUT /application/:id/status**: Updates application status (recruiter only).
+- **GET /applications**: Lists all applications for the logged-in user.
 
 ---
 
@@ -75,15 +123,7 @@ Each function helps manage user accounts, authentication, and profile updates in
 
 ---
 
-# Routes Documentation
 
-## User Routes
-- **/register**: Registers a new user (POST).
-- **/login**: Logs in a user (POST).
-- **/logout**: Logs out the user (GET).
-- **/profile/update**: Updates user profile (POST, protected by isAuthenticated middleware).
-- Uses the user controller for handling logic and isAuthenticated middleware for security.
 
-These files help secure your backend and organize user-related API endpoints.
 
 
